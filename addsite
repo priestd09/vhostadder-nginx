@@ -18,7 +18,6 @@
 # Version 1.1
 # Usage: addsite yourdomaingoeshere.org
 #################################################
-	
         if [ `whoami` != root ]; then
             echo Please run this script as root or using sudo
             exit
@@ -27,32 +26,27 @@
 		echo "Example: addsite foobar.org"
 		exit
 	else
-
 	if [ ! -d /home/www/ ]; then
         echo " == Creting www in /home/"
         mkdir /home/www/
 		chmod 0700 /home/www/
         chown -R www-data:www-data /home/www/
 	fi
-		
 	if [ ! -d /home/www/htdocs/ ]; then
         echo " == Creting htdocs in /home/www/"
         mkdir /home/www/htdocs/
         chown -R www-data:www-data /home/www/htdocs/
 	fi
-
 	if [ ! -d /home/www/cgi-bin/ ]; then
         echo " == Creting cgi-bin in /home/www/"
         mkdir /home/www/cgi-bin/
         chown -R www-data:www-data /home/www/cgi-bin/
 	fi
-
 	if [ ! -d /home/www/logs/ ]; then
         echo " == Creting logs in /home/www/"
         mkdir /home/www/logs/
         chown -R www-data:www-data /home/www/logs/
 	fi
-	
 mkdir /home/www/htdocs/$1 /home/www/logs/$1 /home/www/cgi-bin/$1
 chown -R www-data:www-data /home/www/htdocs/$1
 chown -R www-data:www-data /home/www/logs/$1
