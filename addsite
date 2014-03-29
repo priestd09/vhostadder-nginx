@@ -15,7 +15,7 @@
 #################################################
 # Apache 2 vhost adder
 # Original made by Droxtor
-# Version 1.1
+# Version 1.2
 # Usage: addsite yourdomaingoeshere.org
 #################################################
         if [ `whoami` != root ]; then
