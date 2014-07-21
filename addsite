@@ -68,8 +68,8 @@ echo "<VirtualHost *:80>
        # Logfiles
        ErrorLog  /home/www/logs/$1/error.log
        CustomLog /home/www/logs/$1/access.log combined
-</VirtualHost>" > /etc/apache2/sites-available/$1
-a2ensite $1 >/dev/null 2>&1 &
+</VirtualHost>" > /etc/apache2/sites-available/$1.conf
+a2ensite $1 >/dev/null 2>&1.conf &
 /etc/init.d/apache2 reload >/dev/null 2>&1 &
 fi
 echo " == Added $1 succesfully! =="
