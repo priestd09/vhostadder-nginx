@@ -15,7 +15,7 @@
 #################################################
 # Apache 2 vhost adder
 # Original made by Droxtor
-# Version 1.2
+# Version 1.2.1
 # Usage: addsite yourdomaingoeshere.org
 #################################################
         if [ `whoami` != root ]; then
@@ -69,7 +69,7 @@ echo "<VirtualHost *:80>
        ErrorLog  /home/www/logs/$1/error.log
        CustomLog /home/www/logs/$1/access.log combined
 </VirtualHost>" > /etc/apache2/sites-available/$1.conf
-a2ensite $1 >/dev/null 2>&1.conf &
+a2ensite $1 >/dev/null 2>&1 &
 /etc/init.d/apache2 reload >/dev/null 2>&1 &
 fi
 echo " == Added $1 succesfully! =="
