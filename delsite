@@ -28,7 +28,7 @@ exit
 else
 rm -ri /home/www/htdocs/$1 /home/www/logs/$1 /home/www/cgi-bin/$1
 a2dissite $1 &>/dev/null
-rm -i /etc/apache2/sites-available/$1
+rm -i /etc/apache2/sites-available/$1.conf
 /etc/init.d/apache2 reload &>/dev/null
 fi
 echo " == Deleted $1 succesfully! =="
