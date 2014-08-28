@@ -25,10 +25,14 @@ if [ `whoami` != root ]; then
 if [ "$1" = "" ]; then
 echo "Example: delsite foobar.org"
 exit
-else
-rm -ri /home/www/htdocs/$1 /home/www/logs/$1 /home/www/cgi-bin/$1
-a2dissite $1 &>/dev/null
-rm -i /etc/apache2/sites-available/$1.conf
-/etc/init.d/apache2 reload &>/dev/null
 fi
+a2dissite $1 &>/dev/null
+read -p "Remove files? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+rm -r /home/www/htdocs/$1 /home/www/logs/$1 /home/www/cgi-bin/$1
+fi
+rm /etc/apache2/sites-available/$1.conf
+/etc/init.d/apache2 reload &>/dev/null
 echo " == Deleted $1 succesfully! =="
