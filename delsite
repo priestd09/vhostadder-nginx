@@ -28,7 +28,6 @@ exit
 fi
 a2dissite $1 &>/dev/null
 read -p "Remove files? " -n 1 -r
-echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 rm -r /home/www/htdocs/$1 /home/www/logs/$1 /home/www/cgi-bin/$1
