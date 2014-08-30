@@ -51,8 +51,8 @@ mkdir /home/www/htdocs/$1 /home/www/logs/$1 /home/www/cgi-bin/$1
 chown -R www-data:www-data /home/www/htdocs/$1
 chown -R www-data:www-data /home/www/logs/$1
 chown -R www-data:www-data /home/www/cgi-bin/$1
-if [ -n "$2" ]
-then alias=("ServerAlias $2")
+if [ -n "$2" ]; then
+alias="ServerAlias $2"
 fi
 echo "<VirtualHost *:80>
        ServerAdmin admin@$1
@@ -74,5 +74,5 @@ echo "<VirtualHost *:80>
 </VirtualHost>" > /etc/apache2/sites-available/$1.conf
 a2ensite $1 >/dev/null 2>&1 &
 /etc/init.d/apache2 reload >/dev/null 2>&1 &
-
+fi
 echo " == Added $1 succesfully! =="
