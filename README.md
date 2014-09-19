@@ -10,8 +10,7 @@ Requirements:
  -  you need to make directory /home/www and make www-data owner
 
 Install instructions:
- -  Put addsite to /bin folder
- -  chmod +x addsite 
+ -  Put addsite and delsite to /bin folder
 
 Usage:
 addsite foobar.org
