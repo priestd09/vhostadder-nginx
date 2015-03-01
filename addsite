@@ -27,23 +27,23 @@
 		exit
 	else
 	if [ ! -d /home/www/ ]; then
-        echo " == Creting www in /home/"
+        echo " == Creating www in /home/"
         mkdir /home/www/
 		chmod 0700 /home/www/
         chown -R www-data:www-data /home/www/
 	fi
 	if [ ! -d /home/www/htdocs/ ]; then
-        echo " == Creting htdocs in /home/www/"
+        echo " == Creating htdocs in /home/www/"
         mkdir /home/www/htdocs/
         chown -R www-data:www-data /home/www/htdocs/
 	fi
 	if [ ! -d /home/www/cgi-bin/ ]; then
-        echo " == Creting cgi-bin in /home/www/"
+        echo " == Creating cgi-bin in /home/www/"
         mkdir /home/www/cgi-bin/
         chown -R www-data:www-data /home/www/cgi-bin/
 	fi
 	if [ ! -d /home/www/logs/ ]; then
-        echo " == Creting logs in /home/www/"
+        echo " == Creating logs in /home/www/"
         mkdir /home/www/logs/
         chown -R www-data:www-data /home/www/logs/
 	fi
