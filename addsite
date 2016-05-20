@@ -61,16 +61,13 @@ mkdir /home/www/htdocs/$1 /home/www/logs/$1 /home/www/cgi-bin/$1
 chown -R www-data:www-data /home/www/htdocs/$1
 chown -R www-data:www-data /home/www/logs/$1
 chown -R www-data:www-data /home/www/cgi-bin/$1
-echo "http {
-  index index.html;
-
-  server {
+echo "server {
     server_name $1;
+    index index.html;
     access_log /home/www/logs/$1.log main;
 
     root /home/www/htdocs/$1;
-  }
-}" > /etc/nginx/sites-available/$1
+  }" > /etc/nginx/sites-available/$1
 ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
 /etc/init.d/nginx reload >/dev/null 2>&1 &
 fi
