@@ -73,4 +73,5 @@ echo "http {
 }" > /etc/nginx/sites-available/$1
 ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
 /etc/init.d/nginx reload >/dev/null 2>&1 &
+fi
 echo " == Added $1 succesfully! =="
