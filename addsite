@@ -47,27 +47,13 @@
         mkdir /home/www/htdocs/
         chown -R www-data:www-data /home/www/htdocs/
 	fi
-	if [ ! -d /home/www/cgi-bin/ ]; then
-        echo " == Creating cgi-bin in /home/www/"
-        mkdir /home/www/cgi-bin/
-        chown -R www-data:www-data /home/www/cgi-bin/
-	fi
-	if [ ! -d /home/www/logs/ ]; then
-        echo " == Creating logs in /home/www/"
-        mkdir /home/www/logs/
-        chown -R www-data:www-data /home/www/logs/
-	fi
-mkdir /home/www/htdocs/$1 /home/www/logs/$1 /home/www/cgi-bin/$1
+mkdir /home/www/htdocs/$1
 chown -R www-data:www-data /home/www/htdocs/$1
-chown -R www-data:www-data /home/www/logs/$1
-chown -R www-data:www-data /home/www/cgi-bin/$1
 echo "server {
     server_name $1;
     index index.html;
-    access_log /home/www/logs/$1.log main;
-
     root /home/www/htdocs/$1;
-  }" > /etc/nginx/sites-available/$1
+}" > /etc/nginx/sites-available/$1
 ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
 /etc/init.d/nginx reload >/dev/null 2>&1 &
 fi
