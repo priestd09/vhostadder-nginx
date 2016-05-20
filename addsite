@@ -23,7 +23,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #################################################
-# Apache 2 vhost adder
+# Nginx vhost adder
 # Original made by Droxtor
 # Version 1.2.1
 # Usage: addsite yourdomaingoeshere.org
@@ -61,28 +61,16 @@ mkdir /home/www/htdocs/$1 /home/www/logs/$1 /home/www/cgi-bin/$1
 chown -R www-data:www-data /home/www/htdocs/$1
 chown -R www-data:www-data /home/www/logs/$1
 chown -R www-data:www-data /home/www/cgi-bin/$1
-if [ -n "$2" ]; then
-alias="ServerAlias $2"
-fi
-echo "<VirtualHost *:80>
-       ServerAdmin admin@$1
-       ServerName  $1
-       $alias
-       # Indexes + Directory Root.
-       DirectoryIndex index.html index.php
-       DocumentRoot /home/www/htdocs/$1/
+echo "http {
+  index index.html;
 
-       # CGI Directory
-       ScriptAlias /cgi-bin/ /home/www/cgi-bin/$1/
-       <Location /cgi-bin>
-               Options +ExecCGI
-       </Location>
+  server {
+    server_name $1;
+    access_log /home/www/logs/$1.log main;
 
-       # Logfiles
-       ErrorLog  /home/www/logs/$1/error.log
-       CustomLog /home/www/logs/$1/access.log combined
-</VirtualHost>" > /etc/apache2/sites-available/$1.conf
-a2ensite $1 >/dev/null 2>&1 &
-/etc/init.d/apache2 reload >/dev/null 2>&1 &
-fi
+    root /home/www/htdocs/$1;
+  }
+}" > /etc/nginx/sites-available/$1
+ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
+/etc/init.d/nginx reload >/dev/null 2>&1 &
 echo " == Added $1 succesfully! =="
